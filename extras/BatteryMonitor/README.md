@@ -11,10 +11,10 @@ UPSTREAM_REPO="https://github.com/sebromero/ArduinoCore-mbed"
 UPSTREAM_BRANCH="sebromero/pmic-fix"
 UPSTREAM_SHA="2871417f6414d8139a08448c496326af460aa903"
 SOURCES_PATH="libraries/Nicla_System/extras/BatteryMonitor"
-BASE_URL="$UPSTREAM_REPO/blob/$UPSTREAM_SHA/$SOURCES_PATH"
+BASE_URL="$UPSTREAM_REPO/blob/$UPSTREAM_SHA"
 
 for f in index.html style.css app.js; do
-    curl -fsSL -O "$BASE_URL/$f"
+    curl -fsSL -o "$f" "$BASE_URL/$SOURCES_PATH/$f"
 done
 ```
 
