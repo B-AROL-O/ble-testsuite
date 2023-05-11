@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -xe
+set -e
+# set -x
 
 echo "TODO"
 
