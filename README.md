@@ -8,7 +8,7 @@ Automated test suite for Bluetooth Low Energy devices.
 curl -fsSL https://gmacario.github.io/ble-testsuite/install.sh | sh
 ```
 
-then follow the instructions display on the terminal.
+then follow the instructions displayed on the terminal.
 
 <!--
 ## Run the tests
