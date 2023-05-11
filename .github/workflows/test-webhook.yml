@@ -1,0 +1,38 @@
+# workflow triggers
+
+# To test invoking this trigger, you need to send a special POST request to the following URL:
+# https://api.github.com/repos/{owner}/{repo}/dispatches
+#
+# The request also needs to contain the following headers:
+#
+# "Accept": "application/vnd.github+json"
+# "Authorization": "token {personal token with repo access}"
+#
+# You need to provide a personal GitHub token with the repo access scope.
+# If your trigger also features a type, specify it in the request body:
+#
+# {"event_type": "webhook"}
+
+on:
+    push:
+      branches: [ source ]
+    pull_request:
+      branches: [ source ]
+    workflow_dispatch:
+  
+    # Allows external webhook trigger
+    repository_dispatch:
+      types:
+        - webhook
+
+jobs:
+    debug:
+        name: Debug GitHub workflow
+        runs-on: ubuntu-latest
+
+        steps:
+        - run: |
+            id
+            printenv | sort
+    
+# EOF
