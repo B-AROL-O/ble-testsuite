@@ -7,11 +7,13 @@ using the following script:
 
 ```bash
 # https://github.com/arduino/ArduinoCore-mbed/pull/680
-UPSTREAM_REPO="https://github.com/sebromero/ArduinoCore-mbed"
-UPSTREAM_BRANCH="sebromero/pmic-fix"
+GITHUB_REPO="sebromero/ArduinoCore-mbed"
+GITHUB_BRANCH="sebromero/pmic-fix"
+UPSTREAM_REPO="https://github.com/$GITHUB_REPO"
 UPSTREAM_SHA="2871417f6414d8139a08448c496326af460aa903"
 SOURCES_PATH="libraries/Nicla_System/extras/BatteryMonitor"
-BASE_URL="$UPSTREAM_REPO/blob/$UPSTREAM_SHA"
+# BASE_URL="$UPSTREAM_REPO/blob/$UPSTREAM_SHA"
+BASE_URL="https://raw.githubusercontent.com/$GITHUB_REPO/$UPSTREAM_SHA"
 
 for f in index.html style.css app.js; do
     curl -fsSL -o "$f" "$BASE_URL/$SOURCES_PATH/$f"
