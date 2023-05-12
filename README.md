@@ -2,13 +2,17 @@
 
 Automated test suite for Bluetooth Low Energy devices.
 
-## Install the test suite
+## Install ble-testsuite
+
+Copy the following line, then paste it in a <!-- macOS Terminal or -->
+Linux shell prompt.
 
 ```bash
-curl -fsSL https://gmacario.github.io/ble-testsuite/install.sh | sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/gmacario/ble-testsuite/HEAD/install.sh)"
 ```
 
-then follow the instructions displayed on the terminal.
+The script explains what it will do and then pauses before it does it.
+<!-- Read about other [installation options](#). -->
 
 <!--
 ## Run the tests
