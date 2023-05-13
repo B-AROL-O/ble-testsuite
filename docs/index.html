@@ -16,18 +16,43 @@
   <h2>Prerequisites</h2>
 
   <ul>
+    <li>A <a href="https://en.wikipedia.org/wiki/Device_under_test">Device Under Test</a> (DUT) running a Debian or Ubuntu Linux distribution</li>
+    <li>At least one <a href="https://en.wikipedia.org/wiki/Bluetooth">Bluetooth</a> (4.1 or greater) interface available on the DUT</li>
     <li><a href="https://www.gnu.org/software/bash/">Shell</a> access to the Device Under Test</li>
-    <li><a href="https://curl.se/">curl</a> installed on the DUT</li>
+    <li>The <a href="https://curl.se/">curl</a> tool installed on the DUT</li>
+    <li>One or more <a href="https://en.wikipedia.org/wiki/Bluetooth_Low_Energy">Bluetooth Low Energy</a> (BLE) devices in proximity of the DUT</li>
   </ul>
 
   <h3>Installing the test suite</h3>
 
+  <p>Enter the following command to install the software needed for running the BLE Test Suite:</p>
+
   <pre>
     curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh
+  </pre>
+  
+  <h3>Scanning the network for BLE devices in proximity</h3>
+
+  <p>Enter the following command to scan the Bluetooth network
+    and display the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address </a>of the Bluetooth devices in proximity:</p>
+
+  <pre>
+    bluetoothctl --timeout 30 scan on && bluetoothctl devices
+  </pre>
+  
+  <p>Choose the BLE Device you will try to connect to,
+    take note of its MAC address of and set environment variable <code>TARGET_BDADDR</code> accordingly.
+    For instance:
+  </p>
+  
+  <pre>
+    export TARGET_BDADDR=D0:12:43:DA:66:9F
   </pre>
 
   <h3>Running the test suite</h3>
 
+  <p>Enter the following command to run the test suite:</p>
+  
   <pre>
     curl -fsSL https://ble-testsuite.netlify.app/test.sh | sh
   </pre>
