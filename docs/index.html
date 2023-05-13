@@ -1,17 +1,41 @@
 <html>
+<title>Bluetooth Low Energy Test Suite</title>
 
 <body>
-  <p>Very little to see here... yet</p>
-  <p>
+  <!-- <p>Very little to see here... yet</p> -->
 
-    <a href="extras/BatteryMonitor">Arduino WebBLE Battery Monitor</a>
-  </p>
+  <!-- <p>Notice that the <a href="https://github.com/gmacario/ble-testsuite">source repository</a> might also be private.
+  </p> -->
+
+  <h1>Bluetooth Low Energy Test Suite</h1>
 
   <img width="200"
     src="https://upload.wikimedia.org/wikipedia/commons/6/67/An_assortment_of_iBeacon_from_different_vendors.jpg?20140519174307"
     alt="https://commons.wikimedia.org/wiki/File:An_assortment_of_iBeacon_from_different_vendors.jpg" />
-    
-  <p>Notice that the <a href="https://github.com/gmacario/ble-testsuite">source repository</a> might also be private.
+
+  <h2>Prerequisites</h2>
+
+  <ul>
+    <li><a href="https://www.gnu.org/software/bash/">Shell</a> access to the Device Under Test</li>
+    <li><a href="https://curl.se/">curl</a> installed on the DUT</li>
+  </ul>
+
+  <h3>Installing the test suite</h3>
+
+  <pre>
+    curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh
+  </pre>
+
+  <h3>Running the test suite</h3>
+
+  <pre>
+    curl -fsSL https://ble-testsuite.netlify.app/test.sh | sh
+  </pre>
+
+  <h2>Other tests</h2>
+
+  <p>
+    <a href="extras/BatteryMonitor">Arduino WebBLE Battery Monitor</a>
   </p>
 
 </body>
