@@ -16,8 +16,11 @@
   <h2>Prerequisites</h2>
 
   <ul>
-    <li><a href="https://www.gnu.org/software/bash/">Shell</a> access to the Device Under Test</li>
+    <li>A Device Under Test (DUT) running a Debian or Ubuntu Linux distribution</li>
+    <li>At least one Bluetooth interface available on the DUT</li>
     <li><a href="https://curl.se/">curl</a> installed on the DUT</li>
+    <li><a href="https://www.gnu.org/software/bash/">Shell</a> access to the Device Under Test</li>
+    <li>One or more Bluetooth Low Energy devices in proximity to the DUT to connect to</li>
   </ul>
 
   <h3>Installing the test suite</h3>
@@ -25,10 +28,21 @@
   <pre>
     curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh
   </pre>
-
-  <h3>Running the test suite</h3>
+  
+  <h3>Installing the test suite</h3>
 
   <pre>
+    bluetoothctl --timeout 30 scan on && bluetoothctl devices
+  </pre>
+  
+  <p>Select the target BLE device, and take note of its TARGET_BDADDR.</p>
+  
+  <h3>Running the test suite</h3>
+
+  <p>Set environment variable TARGET_BDADDR with the proper value</p>
+  
+  <pre>
+    TARGET_BDADDR=D0:12:43:DA:66:9F
     curl -fsSL https://ble-testsuite.netlify.app/test.sh | sh
   </pre>
 
