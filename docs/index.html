@@ -25,24 +25,34 @@
 
   <h3>Installing the test suite</h3>
 
+  <p>Enter the following command to install the software needed for running the test suite:</p>
+
   <pre>
     curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh
   </pre>
   
-  <h3>Installing the test suite</h3>
+  <h3>Scanning the network for BLE devices in proximity</h3>
+
+  <p>Enter the following command for scanning the Bluetooth network
+    and display the MAC address of the BLE devices in proximity:</p>
 
   <pre>
     bluetoothctl --timeout 30 scan on && bluetoothctl devices
   </pre>
   
-  <p>Select the target BLE device, and take note of its TARGET_BDADDR.</p>
-  
-  <h3>Running the test suite</h3>
-
-  <p>Set environment variable TARGET_BDADDR with the proper value</p>
+  <p>Take note of the MAC address of the BLE Device you want to connect to,
+    and set environment variable <pre>TARGET_BDADDR<pre> accordingly, for instance:
+  </p>
   
   <pre>
-    TARGET_BDADDR=D0:12:43:DA:66:9F
+    export TARGET_BDADDR=D0:12:43:DA:66:9F
+  </pre>
+
+  <h3>Running the test suite</h3>
+
+  <p>Enter the following command to run the test suite:</p>
+  
+  <pre>
     curl -fsSL https://ble-testsuite.netlify.app/test.sh | sh
   </pre>
 
