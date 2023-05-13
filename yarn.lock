@@ -3441,7 +3441,7 @@ next-remote-watch@1.0.0:
     commander "^5.0.0"
     express "^4.17.1"
 
-next@latest:
+next@^12.2.4:
   version "12.2.4"
   resolved "https://registry.npmjs.org/next/-/next-12.2.4.tgz"
   integrity sha512-b1xlxEozmAWokAXzXsi5vlmU/IfJcFNIJA8dpU5UdkFbyDPio8wwb8mAQ/Y7rGtfTgG/t/u49BiyEA+xAgFvow==
