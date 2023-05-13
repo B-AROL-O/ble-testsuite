@@ -27,5 +27,6 @@ curl -fsSL https://gmacario.github.io/ble-testsuite/run.sh | sh
 ## Other tests
 
 * [WebBLE Battery Monitor](docs/extras/BatteryMonitor)
+* [sample_webhooks](docs/sample_webhooks/)
 
 <!-- EOF -->
