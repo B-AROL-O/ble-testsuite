@@ -87,22 +87,25 @@ jobs:
               echo $PAYLOAD | jq .
               # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
 
-              repository_type=$(echo $PAYLOAD | jq "repository.type")
+              push_changes=$(echo $PAYLOAD | jq ".push.changes")
+              echo "DEBUG: push_changes=$push_changes"
+
+              repository_type=$(echo $PAYLOAD | jq ".repository.type")
               echo "DEBUG: repository_type=$repository_type"
 
-              repository_fullname=$(echo $PAYLOAD | jq "repository.full_name")
+              repository_fullname=$(echo $PAYLOAD | jq ".repository.full_name")
               echo "DEBUG: repository_fullname=$repository_fullname"
 
-              actor_displayname=$(echo $PAYLOAD | jq "actor.display_name")
+              actor_displayname=$(echo $PAYLOAD | jq ".actor.display_name")
               echo "DEBUG: actor_displayname=$actor_displayname"
 
-              pullrequest_id=$(echo $PAYLOAD | jq "pullrequest.id")
+              pullrequest_id=$(echo $PAYLOAD | jq ".pullrequest.id")
               echo "DEBUG: pullrequest_id=$pullrequest_id"
 
-              pullrequest_title=$(echo $PAYLOAD | jq "pullrequest.title")
+              pullrequest_title=$(echo $PAYLOAD | jq ".pullrequest.title")
               echo "DEBUG: pullrequest_title=$pullrequest_title"
 
-              pullrequest_state=$(echo $PAYLOAD | jq "pullrequest.state")
+              pullrequest_state=$(echo $PAYLOAD | jq ".pullrequest.state")
               echo "DEBUG: pullrequest_state=$pullrequest_state"
               
               echo TODO
