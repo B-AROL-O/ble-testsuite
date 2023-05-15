@@ -59,8 +59,17 @@ jobs:
 
         steps:
         - run: |
-            id
-            hostname
+            echo "DEBUG: id=$(id)"
+            echo "DEBUG: hostname=$(hostname)"
+            echo "DEBUG: Print process environment"
             printenv | sort
-    
+            echo "DEBUG: Print workflow context"
+            echo "DEBUG:   unit: $UNIT"
+            echo "DEBUG:   integration: $INTEGRATION"
+            echo "DEBUG:   payload: $PAYLOAD"
+          env:
+            UNIT: "${{ inputs.unit }}"
+            INTEGRATION: "${{ inputs.integration }}"
+            PAYLOAD: "${{ inputs.payload }}"
+            
 # EOF
