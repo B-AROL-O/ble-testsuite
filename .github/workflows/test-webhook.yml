@@ -13,6 +13,8 @@
 #
 # {"event_type": "webhook"}
 
+name: Test Bitbucket webhook
+
 on:
     push:
       branches: [ source ]
@@ -33,6 +35,7 @@ jobs:
         steps:
         - run: |
             id
+            hostname
             printenv | sort
     
 # EOF
