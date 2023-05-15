@@ -46,7 +46,7 @@ curl -L \
   -H "Authorization: Bearer ${MY_TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_ID}/dispatches \
-  -d '{"ref":"feat/bitbucket-webhook","inputs":{"unit":false, "integration":false, "payload":false}'
+  -d '{"ref":"feat/bitbucket-webhook","inputs":{"unit":false, "integration":false, "payload":"my_payload"}'
 
 # -d '{"ref":"main","inputs":{"unit":false, "integration":{}}}'
   # "unit":false,"integration":true
