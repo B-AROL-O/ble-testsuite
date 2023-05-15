@@ -38,10 +38,18 @@ REPO="ble-testsuite"
 WORKFLOW_ID="test-webhook.yml"
 PAYLOAD_FILE="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
 
-PAYLOAD_FILE=simple.json
-# PAYLOAD="$(cat $PAYLOAD_FILE | sed 's/\"/\\\"/g' | tr -d '\n')"
-PAYLOAD="$(cat $PAYLOAD_FILE | sed -e 's/\"/\\\"/g' | sed -e 's/^[ \t]*//' | tr -d '\n')"
+# PAYLOAD_FILE=simple.json
+# PAYLOAD="$(cat $PAYLOAD_FILE | sed -e 's/\"/\\\"/g' | sed -e 's/^[ \t]*//' | tr -d '\n')"
+PAYLOAD="$(cat $PAYLOAD_FILE \
+    | sed -e 's/^[ \t]*//' \
+    | sed -e 's/\\/\\\\/g' \
+    | sed -e 's/\"/\\\"/g' \
+    | tr -d '\n')"
 echo "DEBUG: PAYLOAD=$PAYLOAD"
+
+
+# "description": "* Add section \""
+# "description": "* Add section \"\\[env\\]\"\n",
 
 # Create a workflow dispatch event
 # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#create-a-workflow-dispatch-event

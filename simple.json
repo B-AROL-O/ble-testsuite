@@ -1,7 +1,5 @@
 {
-    "var1": "value1",
-    "var2": "value2",
-    "struct": {
-        "item2": 100
+    "pullrequest": {
+        "description": "* Add section \""
     }
 }
