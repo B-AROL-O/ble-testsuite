@@ -84,34 +84,37 @@ jobs:
 
           - run: |
               echo "DEBUG: Bitbucket payload: $PAYLOAD"
-              echo $PAYLOAD | jq .
+              #
+              # echo $PAYLOAD | jq .
               # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
 
-              push_changes=$(echo $PAYLOAD | jq ".push.changes")
+          - run: |
+              push_changes=$(echo $PAYLOAD | jq -c ".push.changes")
               echo "DEBUG: push_changes=$push_changes"
 
-              repository_type=$(echo $PAYLOAD | jq ".repository.type")
+              repository_type=$(echo $PAYLOAD | jq  -c ".repository.type")
               echo "DEBUG: repository_type=$repository_type"
 
-              repository_fullname=$(echo $PAYLOAD | jq ".repository.full_name")
+              repository_fullname=$(echo $PAYLOAD | jq  -c ".repository.full_name")
               echo "DEBUG: repository_fullname=$repository_fullname"
 
-              actor_displayname=$(echo $PAYLOAD | jq ".actor.display_name")
+              actor_displayname=$(echo $PAYLOAD | jq  -c ".actor.display_name")
               echo "DEBUG: actor_displayname=$actor_displayname"
 
-              pullrequest_id=$(echo $PAYLOAD | jq ".pullrequest.id")
+              pullrequest_id=$(echo $PAYLOAD | jq  -c ".pullrequest.id")
               echo "DEBUG: pullrequest_id=$pullrequest_id"
 
-              pullrequest_title=$(echo $PAYLOAD | jq ".pullrequest.title")
+              pullrequest_title=$(echo $PAYLOAD | jq  -c ".pullrequest.title")
               echo "DEBUG: pullrequest_title=$pullrequest_title"
 
-              pullrequest_state=$(echo $PAYLOAD | jq ".pullrequest.state")
+              pullrequest_state=$(echo $PAYLOAD | jq -c ".pullrequest.state")
               echo "DEBUG: pullrequest_state=$pullrequest_state"
               
               echo TODO
-            env:
-              UNIT: "${{ inputs.unit }}"
-              INTEGRATION: "${{ inputs.integration }}"
-              PAYLOAD: "${{ inputs.payload }}"
+
+        env:
+          UNIT: "${{ inputs.unit }}"
+          INTEGRATION: "${{ inputs.integration }}"
+          PAYLOAD: "${{ inputs.payload }}"
             
 # EOF
