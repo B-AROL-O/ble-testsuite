@@ -86,6 +86,16 @@ jobs:
               echo "DEBUG: Bitbucket payload: $PAYLOAD"
               echo $PAYLOAD | jq .
               # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
+
+              repository_type=$(echo $PAYLOAD | jq "repository.type")
+              echo "DEBUG: repository_type=$repository_type"
+
+              actor_displayname=$(echo $PAYLOAD | jq "actor.display_name")
+              echo "DEBUG: actor_displayname=$actor_displayname"
+
+              pullrequest_state=$(echo $PAYLOAD | jq "pullrequest.state")
+              echo "DEBUG: pullrequest_state=$pullrequest_state"
+              
               echo TODO
             env:
               UNIT: "${{ inputs.unit }}"
