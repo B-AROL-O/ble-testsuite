@@ -36,7 +36,20 @@ MY_TOKEN=github_pat_11AAASLLQ0g8tn3JhOuUKj_nRfgKtg2Oh11PIhWOHlhqb9CcWC7amg79jMaV
 OWNER="gmacario"
 REPO="ble-testsuite"
 WORKFLOW_ID="test-webhook.yml"
-PAYLOAD="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
+PAYLOAD_FILE="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
+
+# PAYLOAD_FILE=simple.json
+# PAYLOAD="$(cat $PAYLOAD_FILE | sed -e 's/\"/\\\"/g' | sed -e 's/^[ \t]*//' | tr -d '\n')"
+PAYLOAD="$(cat $PAYLOAD_FILE \
+    | sed -e 's/^[ \t]*//' \
+    | sed -e 's/\\/\\\\/g' \
+    | sed -e 's/\"/\\\"/g' \
+    | tr -d '\n')"
+echo "DEBUG: PAYLOAD=$PAYLOAD"
+
+
+# "description": "* Add section \""
+# "description": "* Add section \"\\[env\\]\"\n",
 
 # Create a workflow dispatch event
 # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#create-a-workflow-dispatch-event
@@ -46,7 +59,17 @@ curl -L \
   -H "Authorization: Bearer ${MY_TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_ID}/dispatches \
-  -d '{"ref":"main","inputs":{"unit":false,"integration":true}}'
+  -d "{\"ref\":\"feat/bitbucket-webhook\",\"inputs\":{\"unit\":\"u2\",\"integration\":\"false\",\"payload\":\"$PAYLOAD\"}"
+
+# TODO
+
+# \"$PAYLOAD\"
+
+# Examples of valid contents for the workflow_dispatch API:
+#   -d '{"ref":"feat/bitbucket-webhook","inputs":{"unit":"u2", "integration":false, "payload":"{a:b}"}'
+#   -d '{"ref":"feat/bitbucket-webhook","inputs":{"unit":"u2", "integration":false, "payload":"my_payload"}'
+#   -d '{"ref":"feat/bitbucket-webhook","inputs":{"unit":"u2", "integration":"false", "payload":"my_payload"}'
+#   -d '{"ref":"main","inputs":{"unit":false, "integration":{}}}'
 
 # # Create a repository dispatch event
 # # ENDPOINT_URL="https://api.github.com/repos/${OWNER}/${REPO}/dispatches"
