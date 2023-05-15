@@ -90,14 +90,14 @@ jobs:
               echo "DEBUG ============================================"
 
           - run: |
-              push_changes0=$(echo $PAYLOAD | jq -c ".push.changes[0]")
-              echo "DEBUG: push_changes0=$push_changes0"
+              # push_changes0=$(echo $PAYLOAD | jq -c ".push.changes[0]")
+              # echo "DEBUG: push_changes0=$push_changes0"
 
               push_changes0_old=$(echo $PAYLOAD | jq -c ".push.changes[0].old")
               echo "DEBUG: push_changes0_old=$push_changes0_old"
 
-              push_changes0_new=$(echo $PAYLOAD | jq -c ".push.changes[0].new")
-              echo "DEBUG: push_changes0_new=$push_changes0_new"
+              # push_changes0_new=$(echo $PAYLOAD | jq -c ".push.changes[0].new")
+              # echo "DEBUG: push_changes0_new=$push_changes0_new"
 
               push_changes0_new_target_hash=$(echo $PAYLOAD | jq -c ".push.changes[0].new.target.hash")
               echo "DEBUG: push_changes0_new_target_hash=$push_changes0_new_target_hash"
@@ -107,6 +107,9 @@ jobs:
 
               repository_fullname=$(echo $PAYLOAD | jq  -c ".repository.full_name")
               echo "DEBUG: repository_fullname=$repository_fullname"
+
+              repository_name=$(echo $PAYLOAD | jq  -c ".repository.name")
+              echo "DEBUG: repository_name=$repository_name"
 
               actor_displayname=$(echo $PAYLOAD | jq  -c ".actor.display_name")
               echo "DEBUG: actor_displayname=$actor_displayname"
