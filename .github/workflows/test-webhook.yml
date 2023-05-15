@@ -90,17 +90,17 @@ jobs:
               echo "DEBUG ============================================"
 
           - run: |
-              push_changes=$(echo $PAYLOAD | jq -c ".push.changes")
-              echo "DEBUG: push_changes=$push_changes"
+              push_changes0=$(echo $PAYLOAD | jq -c ".push.changes[0]")
+              echo "DEBUG: push_changes0=$push_changes0"
 
-              push_changes_old=$(echo $PAYLOAD | jq -c ".push.changes.old")
-              echo "DEBUG: push_changes_old=$push_changes_old"
+              push_changes0_old=$(echo $PAYLOAD | jq -c ".push.changes[0].old")
+              echo "DEBUG: push_changes0_old=$push_changes0_old"
 
-              push_changes_new=$(echo $PAYLOAD | jq -c ".push.changes.new")
-              echo "DEBUG: push_changes_new=$push_changes_new"
+              push_changes0_new=$(echo $PAYLOAD | jq -c ".push.changes[0].new")
+              echo "DEBUG: push_changes0_new=$push_changes0_new"
 
-              push_changes_new_target_hash=$(echo $PAYLOAD | jq -c ".push.changes.new.target.hash")
-              echo "DEBUG: push_changes_new_target_hash=$push_changes_new_target_hash"
+              push_changes0_new_target_hash=$(echo $PAYLOAD | jq -c ".push.changes[0].new.target.hash")
+              echo "DEBUG: push_changes0_new_target_hash=$push_changes0_new_target_hash"
 
               repository_type=$(echo $PAYLOAD | jq  -c ".repository.type")
               echo "DEBUG: repository_type=$repository_type"
