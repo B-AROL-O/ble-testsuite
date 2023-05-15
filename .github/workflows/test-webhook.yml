@@ -72,5 +72,24 @@ jobs:
             UNIT: "${{ inputs.unit }}"
             INTEGRATION: "${{ inputs.integration }}"
             PAYLOAD: "${{ inputs.payload }}"
+
+    act_on_payload:
+        name: Act on Bitbucket webhook payload
+        runs-on: ubuntu-latest
+
+        steps:
+          - run: |
+              which jq || echo "ERROR: jq is not installed"
+              which node || echo "ERROR: node is not installed"
+
+          - run: |
+              echo "DEBUG: Bitbucket payload: $PAYLOAD"
+              echo $PAYLOAD | jq .
+              # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
+              echo TODO
+            env:
+              UNIT: "${{ inputs.unit }}"
+              INTEGRATION: "${{ inputs.integration }}"
+              PAYLOAD: "${{ inputs.payload }}"
             
 # EOF
