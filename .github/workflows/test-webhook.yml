@@ -83,14 +83,24 @@ jobs:
               which node || echo "ERROR: node is not installed"
 
           - run: |
-              echo "DEBUG: Bitbucket payload: $PAYLOAD"
-              #
-              # echo $PAYLOAD | jq .
+              echo "DEBUG: Displaying payload"
+              echo "DEBUG ============================================"
+              echo $PAYLOAD | jq -C .
               # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
+              echo "DEBUG ============================================"
 
           - run: |
               push_changes=$(echo $PAYLOAD | jq -c ".push.changes")
               echo "DEBUG: push_changes=$push_changes"
+
+              push_changes_old=$(echo $PAYLOAD | jq -c ".push.changes.old")
+              echo "DEBUG: push_changes_old=$push_changes_old"
+
+              push_changes_new=$(echo $PAYLOAD | jq -c ".push.changes.new")
+              echo "DEBUG: push_changes_new=$push_changes_new"
+
+              push_changes_new_target_hash=$(echo $PAYLOAD | jq -c ".push.changes.new.target.hash")
+              echo "DEBUG: push_changes_new_target_hash=$push_changes_new_target_hash"
 
               repository_type=$(echo $PAYLOAD | jq  -c ".repository.type")
               echo "DEBUG: repository_type=$repository_type"
