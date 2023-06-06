@@ -54,7 +54,7 @@ tmpfile=/tmp/expect$$
 cat <<END >$tmpfile
 #!/usr/bin/expect -f
 set device "$TARGET_BDADDR"
-set charateristic "$TARGET_CHARACTERISTIC"
+set characteristic "$TARGET_CHARACTERISTIC"
 # set controller "F0:2F:74:63:3A:12"
 set timeout 5
 set ret 0
@@ -267,9 +267,9 @@ set +e  # expect may fail
 expect -f $tmpfile
 retval=$?
 if [ $retval -eq 0 ]; then
-    echo "\n=== TEST: OK"
+    printf "\n=== TEST: OK"
 else
-    echo "\n=== TEST: FAIL (error $retval)"
+    printf "\n=== TEST: FAIL (error $retval)"
 fi
 exit $retval
 
