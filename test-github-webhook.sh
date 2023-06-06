@@ -40,7 +40,7 @@ PAYLOAD_FILE="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
 
 # PAYLOAD_FILE=simple.json
 # PAYLOAD="$(cat $PAYLOAD_FILE | sed -e 's/\"/\\\"/g' | sed -e 's/^[ \t]*//' | tr -d '\n')"
-PAYLOAD="$(cat $PAYLOAD_FILE \
+PAYLOAD="$(cat \"$PAYLOAD_FILE\" \
     | sed -e 's/^[ \t]*//' \
     | sed -e 's/\\/\\\\/g' \
     | sed -e 's/\"/\\\"/g' \
