@@ -40,7 +40,7 @@ PAYLOAD_FILE="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
 
 fail()
 {
-  echo $*
+  echo "$@"
   exit 1
 }
 
