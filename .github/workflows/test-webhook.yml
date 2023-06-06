@@ -13,12 +13,40 @@
 #
 # {"event_type": "webhook"}
 
+name: Test Bitbucket webhook
+
 on:
     push:
       branches: [ source ]
     pull_request:
       branches: [ source ]
     workflow_dispatch:
+      inputs:
+        unit:
+          required: false
+        integration:
+          required: false
+        payload:
+          required: false
+          # type: string
+
+        # logLevel:
+        #   description: 'Log level'
+        #   required: true
+        #   default: 'warning'
+        #   type: choice
+        #   options:
+        #   - info
+        #   - warning
+        #   - debug
+        # tags:
+        #   description: 'Test scenario tags'
+        #   required: false
+        #   type: boolean
+        # environment:
+        #   description: 'Environment to run tests against'
+        #   type: environment
+        #   required: true
   
     # Allows external webhook trigger
     repository_dispatch:
@@ -32,7 +60,95 @@ jobs:
 
         steps:
         - run: |
-            id
+            echo "DEBUG: id=$(id)"
+            echo "DEBUG: hostname=$(hostname)"
+            echo "DEBUG: Print process environment"
             printenv | sort
-    
+            echo "DEBUG: Print workflow context"
+            echo "DEBUG:   unit: $UNIT"
+            echo "DEBUG:   integration: $INTEGRATION"
+            echo "DEBUG:   payload: $PAYLOAD"
+          env:
+            UNIT: "${{ inputs.unit }}"
+            INTEGRATION: "${{ inputs.integration }}"
+            PAYLOAD: "${{ inputs.payload }}"
+
+    act_on_payload:
+        name: Act on Bitbucket webhook payload
+        runs-on: ubuntu-latest
+
+        steps:
+          - run: |
+              which jq || echo "ERROR: jq is not installed"
+              which node || echo "ERROR: node is not installed"
+
+          - run: |
+              echo "DEBUG: Displaying payload"
+              echo "DEBUG ============================================"
+              echo $PAYLOAD | jq -C .
+              # echo $PAYLOAD | node -e 'JSON.pretty(xxx)'
+              echo "DEBUG ============================================"
+
+          - run: |
+              # push_changes0=$(echo $PAYLOAD | jq -c ".push.changes[0]")
+              # echo "DEBUG: push_changes0=$push_changes0"
+
+              # push_changes0_old=$(echo $PAYLOAD | jq -c ".push.changes[0].old")
+              # echo "DEBUG: push_changes0_old=$push_changes0_old"
+
+              push_changes0_old_name=$(echo $PAYLOAD | jq -c ".push.changes[0].old.name")
+              echo "DEBUG: push_changes0_old_name=$push_changes0_old_name"
+
+              push_changes0_old_target_type=$(echo $PAYLOAD | jq -c ".push.changes[0].old.target.type")
+              echo "DEBUG: push_changes0_old_target_type=$push_changes0_old_target_type"
+
+              push_changes0_old_target_hash=$(echo $PAYLOAD | jq -c ".push.changes[0].old.target.hash")
+              echo "DEBUG: push_changes0_old_target_hash=$push_changes0_old_target_hash"
+
+              push_changes0_old_target_date=$(echo $PAYLOAD | jq -c ".push.changes[0].old.target.date")
+              echo "DEBUG: push_changes0_old_target_date=$push_changes0_old_target_date"
+
+              # push_changes0_new=$(echo $PAYLOAD | jq -c ".push.changes[0].new")
+              # echo "DEBUG: push_changes0_new=$push_changes0_new"
+
+              push_changes0_new_name=$(echo $PAYLOAD | jq -c ".push.changes[0].new.name")
+              echo "DEBUG: push_changes0_new_name=$push_changes0_new_name"
+
+              push_changes0_new_target_type=$(echo $PAYLOAD | jq -c ".push.changes[0].new.target.type")
+              echo "DEBUG: push_changes0_new_target_type=$push_changes0_new_target_type"
+
+              push_changes0_new_target_hash=$(echo $PAYLOAD | jq -c ".push.changes[0].new.target.hash")
+              echo "DEBUG: push_changes0_new_target_hash=$push_changes0_new_target_hash"
+
+              push_changes0_new_target_date=$(echo $PAYLOAD | jq -c ".push.changes[0].new.target.date")
+              echo "DEBUG: push_changes0_new_target_date=$push_changes0_new_target_date"
+
+              repository_type=$(echo $PAYLOAD | jq  -c ".repository.type")
+              echo "DEBUG: repository_type=$repository_type"
+
+              repository_fullname=$(echo $PAYLOAD | jq  -c ".repository.full_name")
+              echo "DEBUG: repository_fullname=$repository_fullname"
+
+              repository_name=$(echo $PAYLOAD | jq  -c ".repository.name")
+              echo "DEBUG: repository_name=$repository_name"
+
+              actor_displayname=$(echo $PAYLOAD | jq  -c ".actor.display_name")
+              echo "DEBUG: actor_displayname=$actor_displayname"
+
+              pullrequest_id=$(echo $PAYLOAD | jq  -c ".pullrequest.id")
+              echo "DEBUG: pullrequest_id=$pullrequest_id"
+
+              pullrequest_title=$(echo $PAYLOAD | jq  -c ".pullrequest.title")
+              echo "DEBUG: pullrequest_title=$pullrequest_title"
+
+              pullrequest_state=$(echo $PAYLOAD | jq -c ".pullrequest.state")
+              echo "DEBUG: pullrequest_state=$pullrequest_state"
+              
+              echo TODO
+
+        env:
+          UNIT: "${{ inputs.unit }}"
+          INTEGRATION: "${{ inputs.integration }}"
+          PAYLOAD: "${{ inputs.payload }}"
+            
 # EOF
