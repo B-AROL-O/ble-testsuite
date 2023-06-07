@@ -55,7 +55,7 @@ jobs:
           VALIDATE_KUBERNETES_KUBECONFORM: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Do not lint downloaded code - see https://github.com/super-linter/super-linter
-          # FILTER_REGEX_EXCLUDE: .*/download/.*
+          # Exclude extra code which does not pass - see https://github.com/super-linter/super-linter
+          FILTER_REGEX_EXCLUDE: .*/extras/.*
 
 # EOF
