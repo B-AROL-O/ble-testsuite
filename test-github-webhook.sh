@@ -32,21 +32,33 @@ set -e
 set -x
 
 # MY_TOKEN=github_pat_xxxx
-MY_TOKEN=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
 OWNER="gmacario"
 REPO="ble-testsuite"
 WORKFLOW_ID="test-webhook.yml"
 PAYLOAD_FILE="${PWD}/docs/sample_webhooks/2023-05-11-120942-webhook-site.json"
-
 # PAYLOAD_FILE=simple.json
+
+fail()
+{
+  echo "$@"
+  exit 1
+}
+
+# Sanity checks
+[ -z "$MY_TOKEN" ] || fail "Please define MY_TOKEN"
+[ -z "$OWNER" ] || fail "Please define OWNER"
+[ -z "$WORKFLOW_ID" ] || fail "Please define WORKFLOW_ID"
+[ -z "$PAYLOAD_FILE" ] || fail "Please define PAYLOAD_FILE"
+[ -e "$PAYLOAD_FILE" ] || fail "Cannot find $PAYLOAD_FILE"
+
+# shellcheck disable=SC2086
 # PAYLOAD="$(cat $PAYLOAD_FILE | sed -e 's/\"/\\\"/g' | sed -e 's/^[ \t]*//' | tr -d '\n')"
-PAYLOAD="$(cat $PAYLOAD_FILE \
+PAYLOAD="$(cat \"$PAYLOAD_FILE\" \
     | sed -e 's/^[ \t]*//' \
     | sed -e 's/\\/\\\\/g' \
     | sed -e 's/\"/\\\"/g' \
     | tr -d '\n')"
 echo "DEBUG: PAYLOAD=$PAYLOAD"
-
 
 # "description": "* Add section \""
 # "description": "* Add section \"\\[env\\]\"\n",

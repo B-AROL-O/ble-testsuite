@@ -248,9 +248,9 @@ set +e  # expect may fail
 expect -f $tmpfile
 retval=$?
 if [ $retval -eq 0 ]; then
-    echo "\n=== TEST: OK"
+    echo -e "\n=== TEST: OK"
 else
-    echo "\n=== TEST: FAIL (error $retval)"
+    echo -e "\n=== TEST: FAIL (error $retval)"
 fi
 exit $retval
 
