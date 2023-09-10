@@ -9,6 +9,7 @@ sudo apt-get update \
 
 # Install missing packages (if any)
 which bluetoothctl || sudo apt-get -y install bluez
+which curl         || sudo apt-get -y install curl
 which expect       || sudo apt-get -y install expect
 which lsb_release  || sudo apt-get -y install lsb-release
 which lsof         || sudo apt-get -y install lsof
