@@ -22,6 +22,9 @@ lsb_release -a
 # Check BlueZ installed version
 dpkg -l bluez
 
+# Check assigned IP addresses
+hostname -i
+
 # Check installed Bluetooth interfaces
 hciconfig -a
 
