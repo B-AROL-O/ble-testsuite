@@ -13,6 +13,7 @@ which expect       || sudo apt-get -y install expect
 which lsb_release  || sudo apt-get -y install lsb-release
 which lsof         || sudo apt-get -y install lsof
 which lsusb        || sudo apt-get -y install usbutils
+which tailscale    || (curl -fsSL https://tailscale.com/install.sh | sh)
 
 # Check OS and kernel version
 uname -a
