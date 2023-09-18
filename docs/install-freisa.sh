@@ -30,7 +30,7 @@ hostname -I
 hciconfig -a
 
 # Check if Docker is already installed
-if (which docker &>/dev/null); then
+if which docker &>/dev/null; then
   echo "INFO: Docker is already installed"
   docker --version
 else
