@@ -31,7 +31,7 @@ hciconfig -a
 
 # Check if Docker is already installed
 # See https://tecadmin.net/check-if-a-program-exists-in-linux/
-if command -v docker > /dev/null 2&>1; then
+if command -v docker > /dev/null 2>&1; then
   echo "INFO: Docker is already installed"
   docker --version
 else
