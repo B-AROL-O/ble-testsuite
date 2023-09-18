@@ -24,7 +24,7 @@ lsb_release -a
 dpkg -l bluez
 
 # Check assigned IP addresses
-hostname -i
+hostname -I
 
 # Check installed Bluetooth interfaces
 hciconfig -a
