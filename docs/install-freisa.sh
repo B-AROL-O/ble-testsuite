@@ -31,8 +31,10 @@ hciconfig -a
 
 # Install Docker Engine using the convenience script
 # See https://docs.docker.com/engine/install/ubuntu/
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh --dry-run
-sudo sh ./get-docker.sh
+if (which docker); then
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh ./get-docker.sh --dry-run
+  sudo sh ./get-docker.sh
+fi
 
 # EOF
