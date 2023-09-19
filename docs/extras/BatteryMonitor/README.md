@@ -1,16 +1,16 @@
 # extras/BatteryMonitor
 
-(2023-05-11 08:47 CEST)
+(2023-09-19 11:40 CEST)
 Contents copied from
-<https://github.com/sebromero/ArduinoCore-mbed/tree/sebromero/pmic-fix/libraries/Nicla_System/extras/BatteryMonitor>
+<https://github.com/arduino/ArduinoCore-mbed/tree/4.0.6/libraries/Nicla_System/extras/BatteryMonitor>
 using the following script:
 
 ```bash
-# https://github.com/arduino/ArduinoCore-mbed/pull/680
-GITHUB_REPO="sebromero/ArduinoCore-mbed"
-GITHUB_BRANCH="sebromero/pmic-fix"
+# https://github.com/arduino/ArduinoCore-mbed/releases/tag/4.0.6
+GITHUB_REPO="arduino/ArduinoCore-mbed
+GITHUB_BRANCH="4.0.6"
 UPSTREAM_REPO="https://github.com/$GITHUB_REPO"
-UPSTREAM_SHA="2871417f6414d8139a08448c496326af460aa903"
+# UPSTREAM_SHA="2871417f6414d8139a08448c496326af460aa903"
 SOURCES_PATH="libraries/Nicla_System/extras/BatteryMonitor"
 # BASE_URL="$UPSTREAM_REPO/blob/$UPSTREAM_SHA"
 BASE_URL="https://raw.githubusercontent.com/$GITHUB_REPO/$UPSTREAM_SHA"
