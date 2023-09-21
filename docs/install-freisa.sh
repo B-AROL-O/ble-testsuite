@@ -29,10 +29,18 @@ hostname -I
 # Check installed Bluetooth interfaces
 hciconfig -a
 
-# Install Docker Engine using the convenience script
-# See https://docs.docker.com/engine/install/ubuntu/
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh --dry-run
-sudo sh ./get-docker.sh
+# Check if Docker is already installed
+# See https://tecadmin.net/check-if-a-program-exists-in-linux/
+if command -v docker > /dev/null 2>&1; then
+  echo "INFO: Docker is already installed"
+  docker --version
+else
+  # Install Docker Engine using the convenience script
+  # See https://docs.docker.com/engine/install/ubuntu/
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh ./get-docker.sh --dry-run
+  sudo sh ./get-docker.sh
+  rm -f ./get-docker.sh
+fi
 
 # EOF
