@@ -4,8 +4,8 @@ set -xe
 
 # Update OS
 sudo apt-get update \
-  && sudo apt-get -y dist-upgrade \
-  && sudo apt-get -y autoremove --purge
+  && sudo DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade \
+  && sudo DEBIAN_FRONTEND=noninteractive apt-get -y autoremove --purge
 
 # Install missing packages (if any)
 which bluetoothctl || sudo apt-get -y install bluez
