@@ -1,6 +1,11 @@
 #!/bin/bash
 
-set -xe
+set +x
+
+if ! command -v sudo &> /dev/null; then
+    echo "Error: sudo is not installed on this system." >&2
+    exit 1
+fi
 
 # Update OS
 sudo apt-get update \
