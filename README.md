@@ -8,7 +8,7 @@ Copy the following line, then paste it in a <!-- macOS Terminal or -->
 Linux shell prompt.
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh)"
+"$(curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh)"
 ```
 
 The script explains what it will do and then pauses before it does it.
