@@ -49,7 +49,7 @@ else
   rm -f ./get-docker.sh
   #
   # Grant privileges to execute Docker commands to current user
-  sudo usermod -aG docker ${USER}
+  sudo usermod -aG docker "${USER}"
 fi
 
 # EOF
