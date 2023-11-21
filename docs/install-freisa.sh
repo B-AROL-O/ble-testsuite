@@ -47,6 +47,9 @@ else
   sudo sh ./get-docker.sh --dry-run
   sudo sh ./get-docker.sh
   rm -f ./get-docker.sh
+  #
+  # Grant privileges to execute Docker commands to current user
+  sudo usermod -aG docker "${USER}"
 fi
 
 # EOF
