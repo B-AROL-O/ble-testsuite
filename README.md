@@ -4,8 +4,7 @@ Automated test suite for Bluetooth Low Energy devices.
 
 ## Install ble-testsuite
 
-Copy the following line, then paste it in a <!-- macOS Terminal or -->
-Linux shell prompt.
+Copy the following line and paste it into a Linux terminal:
 
 ```bash
 curl -fsSL https://ble-testsuite.netlify.app/install.sh | sh
