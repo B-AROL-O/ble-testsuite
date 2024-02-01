@@ -28,6 +28,7 @@ lsb_release -a
 dpkg -l bluez
 
 # Check installed Bluetooth interfaces
-hciconfig -a
+# Do not terminate script if AF_BLUETOOTH is not available
+hciconfig -a || true
 
 # EOF

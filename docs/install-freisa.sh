@@ -33,7 +33,8 @@ dpkg -l bluez
 hostname -I
 
 # Check installed Bluetooth interfaces
-hciconfig -a
+# Do not terminate script if AF_BLUETOOTH is not available
+hciconfig -a || true
 
 # Check if Docker is already installed
 # See https://tecadmin.net/check-if-a-program-exists-in-linux/
